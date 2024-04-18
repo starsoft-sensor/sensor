@@ -1,0 +1,16 @@
+pyyaml==6.*
+pandas==1.3.*
+lightgbm==3.3.*
+numpy
+scikit-learn
+coverage==6.*
+tqdm==4.63.*
+shap==0.40.*
+matplotlib
+japanize-matplotlib
+pydotplus
+graphviz
+PyMySQL==1.0.*
+sshtunnel==0.4.*
+flask
+requests
