@@ -99,12 +99,14 @@ def draw_diff(waveform1, waveform2):
     filename =  graph_dir + '/' + str(timestamp) + '.png'
     plt.savefig(filename)
 def start_process(waveform1, waveform2):
+    if len(waveform1) < len(waveform2):
+        waveform2 = waveform2[0:len(waveform1)]
+    else:
+        waveform1 = waveform1[0:len(waveform2)]
+    print(waveform1)
+    print(waveform2)
     rmse, corr_coef, peak_index, peak_value = compare_waveforms(waveform1, waveform2)
     # Fimd time dealy of two waveforms
-    if len(waveform1 < waveform2):
-        waveform2[0:len(waveform1)]
-    else:
-        waveform1[0:len(waveform2)]
     time_delay = find_time_delay(waveform1, waveform2)
 
     # Adjust wavefrom2 relative to waveform1

@@ -21,7 +21,8 @@ app = Flask(__name__)
 @app.route('/sensor', methods=['GET'])
 def get_all_sensor():
     with db_conn.cursor() as cursor:
-        sql = f"SELECT collect_time, collected_data from sensor_data"
+        sql = f"SELECT collect_time, collected_data from sensor_data ORDER by collect_time desc"
+        print(sql)
         cursor.execute(sql)
         rows = cursor.fetchall()
         data_list = []
@@ -150,6 +151,10 @@ def draw_diff(waveform1, waveform2, timestamp1, timestamp2):
 def start_process(timestamp1, timestamp2, data_list):
     waveform1 = np.array([int(x) for x in data_list[0].split(',')])
     waveform2 = np.array([int(x) for x in data_list[1].split(',')])
+    if len(waveform1) < len(waveform2):
+        waveform2 = waveform2[0:len(waveform1)]
+    else:
+        waveform1 = waveform1[0:len(waveform2)]
     print(waveform1)
     print(waveform2)
     # Fimd time dealy of two waveforms
