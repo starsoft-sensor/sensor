@@ -10,7 +10,7 @@ import japanize_matplotlib
 import socket
 import db_common as db
 
-HOST = 'localhost'
+HOST = '133.18.23.48'
 PORT = 12345
 graph_dir = '../graph'
 
@@ -101,6 +101,10 @@ def draw_diff(waveform1, waveform2):
 def start_process(waveform1, waveform2):
     rmse, corr_coef, peak_index, peak_value = compare_waveforms(waveform1, waveform2)
     # Fimd time dealy of two waveforms
+    if len(waveform1 < waveform2):
+        waveform2[0:len(waveform1)]
+    else:
+        waveform1[0:len(waveform2)]
     time_delay = find_time_delay(waveform1, waveform2)
 
     # Adjust wavefrom2 relative to waveform1
